@@ -1,0 +1,11 @@
+{
+    "title": "Salesforce Reversi",
+    "names": [ "Red Team", "Blue Team" ],
+    "background_color": [ 0.75, 0.75, 0.75, 0.25 ],
+    "background": "",
+    "piece_color": [ [1, 1, 1, 1], [1, 1, 1, 1 ] ],
+    "grid_color": [0.5, 0.7, 0.8, 0.8],
+    "highlight": [0.5, 0.8, 0.85, 0.75], 
+    "cannot_move_title": "All your clouds are belong to us",
+    "texture": [ "oracle.png", "force.png", "circle.png" ]
+}

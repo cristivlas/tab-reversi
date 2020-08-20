@@ -1,0 +1,11 @@
+{
+    "title": "Reversi",
+    "names": [ "PowerBI", "Tableau" ],
+    "background_color": [ 0.2, 0.2, 0.2, 0.65 ],
+    "background": "background.png",
+    "piece_color": [ [1, 1, 1, 1], [1, 1, 1, 1 ] ],
+    "grid_color": [0, 0.4, 0.75, 0.4 ],
+    "highlight": [ 0, 0, 0, 1],
+    "cannot_move_title": "Can't See and Understand Data",
+    "texture": [ "power_bi.png", "tableau.png", "circle.png" ]
+}
