@@ -13,7 +13,8 @@ class Controller(Locking):
         self.__dispatch = dispatch
         self.__scheduler = scheduler
         self.__work = WorkerThreadServer()
-        self.__game = Reversi(board_size, self.__work.post, log)        
+        self.__game = Reversi(board_size, self.__work.post, log)
+        self.__game.lookAhead = 4
         self.__state = {}
         self.update_state()
 
