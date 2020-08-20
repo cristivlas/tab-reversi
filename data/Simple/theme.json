@@ -1,0 +1,11 @@
+{
+    "title": "Simple Reversi",
+    "names": [ "Gold", "Blue" ],
+    "background": "",
+    "background_color": [ 0.65, 0.75, 0.75, 0.75 ],
+    "piece_color": [ [0.92, 0.58, 0.22, 1], [0.11, 0.26, 0.49, 0.8] ],
+    "grid_color": [0, 0, 0, 1],
+    "highlight": [ 1, 1, 1, 1],
+    "cannot_move_title": "Oops!",
+    "texture": [ "white.png", "black.png", "circle.png" ]
+}

@@ -1,0 +1,7 @@
+kivy_env*
+__pycache__
+.buildozer
+.vscode
+*.xml
+*.data
+*.so
