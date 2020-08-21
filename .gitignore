@@ -5,3 +5,6 @@ __pycache__
 *.xml
 *.data
 *.so
+*.pyd
+build
+dist
