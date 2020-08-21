@@ -310,7 +310,7 @@ class ReversiApp(App):
         for (theme, dirs, _) in walk(DATA_DIR):
             name = path.split(theme)
             if name[0] == DATA_DIR:
-                btn = ToggleButton(text=name[1], width=80, height=65, size_hint_y=None, group='theme')
+                btn = ToggleButton(text=name[1], width=80, height=65, size_hint_y=None, group='theme', font_size=14)
                 btn.bind(on_release=self.dropdown.select)
                 self.dropdown.add_widget(btn)
                 if name[1]==self.board.theme.name:
