@@ -1,8 +1,7 @@
-#import pyximport; pyximport.install()
 from kivy.config import Config
 
 Config.set('graphics', 'resizable', False)
-Config.set('graphics', 'multisamples', 8)
+Config.set('graphics', 'multisamples', 4)
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -27,24 +26,41 @@ from utils import is_mobile
 
 from os import path, walk
 import json
+import sys
 
-VERSION = 'Tableau\'s {} 1.0'
-DATA_DIR = 'data'
+VERSION = 'Tableau\'s {} 1.0.0'
+DATA_DIR = path.join(path.dirname(sys.argv[0]), 'data')
 
 
 class ThemeManager:
+    __builtin =  {
+        "name": "Generic",
+        "title": "Reversi Game",
+        "names": [ "WHITE", "BLACK" ],
+        "background_color": [ .5, .5, .5, 1 ],
+        "background": None,
+        "piece_color": [ [1, 1, 1, 1], [0, 0, 0, 1 ] ],
+        "grid_color": [1, 1, 1, 1 ],
+        "highlight": [ 0, 1, 0, .5 ],
+        "cannot_move_title": "Notification",
+        "texture": [ None, None, None ]
+    }
     @staticmethod
     def load(dir=None):
         name = dir = dir or 'Tableau'
         dir = path.join(DATA_DIR, dir)
-        with open(path.join(dir, 'theme.json'), 'r') as f:
-            theme = type('Theme', (object, ), json.load(f))
-            Controller.set_player_names(theme.names)
-        theme.texture = [ Image(path.join(dir, i), mipmap=True).texture for i in theme.texture ]
-        if theme.background:
-             theme.background = path.join(dir, theme.background)
+        try:
+            with open(path.join(dir, 'theme.json'), 'r') as f:
+                theme = type('Theme', (object, ), json.load(f))
+            theme.texture = [ Image(path.join(dir, i), mipmap=True).texture for i in theme.texture ]
+            if theme.background:
+                theme.background = path.join(dir, theme.background)
+        except Exception as e:
+            theme = type('Theme', (object, ), ThemeManager.__builtin)
+            Logger.error('theme: failed to load {}: {}'.format(type(e), e))
         theme.name = name
         Window.set_title(theme.title)
+        Controller.set_player_names(theme.names)
         return theme
 
     @staticmethod
@@ -201,7 +217,7 @@ class BoardWidget(Widget):
 
     @staticmethod
     def step(piece_size):
-        return piece_size / max(1, min(10, Clock.get_rfps()))
+        return piece_size / max(1, min(8, Clock.get_rfps()))
         
         
     # check pending animation and return horizontal size
@@ -293,7 +309,7 @@ class ReversiApp(App):
     def build_theme_selection(self):
         for (theme, dirs, _) in walk(DATA_DIR):
             name = path.split(theme)
-            if name[0]:
+            if name[0] == DATA_DIR:
                 btn = ToggleButton(text=name[1], width=80, height=65, size_hint_y=None, group='theme')
                 btn.bind(on_release=self.dropdown.select)
                 self.dropdown.add_widget(btn)

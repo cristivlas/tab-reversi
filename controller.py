@@ -1,5 +1,3 @@
-# import pyximport; pyximport.install()
-
 from GameLogic import Reversi, NOBODY, player_name
 from worker import Locking, WorkerThreadServer
 from utils import is_mobile
